@@ -24,7 +24,7 @@ For generating 64 tokens in the main depth-zero test (the smaller batch setting)
 | Both, layers split between cards | 104.0–105.9 tokens/second |
 | Both, tensor split between cards | 27.9–39.1 tokens/second |
 
-A separate test processed a 512-token prompt with a wider batch. It produced much higher prompt-throughput numbers for every setup, but the ordering stayed the same: RTX alone first, B70 alone second, layer split third, tensor split fourth. Batch settings change the comparison substantially, so those two workloads should not be blended into one score.
+A separate test processed a 512-token prompt with a wider batch. It produced much higher prompt-throughput numbers for every setup, but the ordering stayed the same: RTX alone first, layer split second, B70 alone third, tensor split fourth. Batch settings change the comparison substantially, so those two workloads should not be blended into one score.
 
 “Tokens per second” is simply the amount of model text processed or produced each second. Prompt processing and text generation are different workloads, so compare them only within the same row and settings.
 

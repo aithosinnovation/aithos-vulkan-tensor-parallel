@@ -604,7 +604,7 @@ window.BENCH_DATA = {
   "date": "2026-10-24",
   "defaultTest": "tg64-d0",
   "failures": [],
-  "headline": "For this 7B model and frozen build, RTX alone led every tested workload’s process medians; layer splitting beat tensor splitting. At tg64/depth0/ub32, RTX medians were 136.5–137.6 tok/s; tensor split managed 27.9–39.1 tok/s. Batch/ubatch512 raised prompt throughput but did not reverse the ranking. This is exploratory, not an optimized hardware limit.",
+  "headline": "For this 7B model and frozen build, RTX alone led every tested workload\u2019s process medians; layer splitting beat tensor splitting. At tg64/depth0/ub32, RTX medians were 136.5\u2013137.6 tok/s; tensor split managed 27.9\u201339.1 tok/s. Batch/ubatch512 raised prompt throughput but did not reverse the ranking. This is exploratory, not an optimized hardware limit.",
   "memory": [
     {
       "b70_observed_min_in_process_mib": 4.13671875,
@@ -3587,76 +3587,54 @@ window.BENCH_DATA = {
     }
   ],
   "schema": "aithos-publication-data/1",
-  "source_json_sha256": {
-    "A-b70": "02b1f287f95236a7dcf7ef54d41b839e7bb11f6e30c09d18d2753be184e319bc",
-    "A-layer": "5db7cb0485eef87918c98d173a427091ae3cc6577f374e42860a4e0c6ae156a5",
-    "A-rtx": "18e4e2b6304427064f404a8e4cf11f18b4021cde693a5888f74952558059bfa6",
-    "A-tensor": "18f4e6ca54ad729e2aeda39156082a7be2f6a92dd76aac2ad94d6a7b877837c6",
-    "B-b70": "0a6eca2236eba7b789b238bfb9b07ce195b1c1f544998f3966440fdd5b9edaae",
-    "B-layer": "064e521bdc96444bda22f5aabac442ef11c8adab81a3c50819ac61fe5ae7a496",
-    "B-rtx": "e79d02236abd3b4b24b27aa26bcbff111669e6d53504557dae6489abeb15d160",
-    "B-tensor": "d611f0ccfd9cd9674e582b647e75c48256136d187858274ef79e65bd94020388",
-    "C-b70": "287fd67519d6d3b1bbac8f1209e52a8813166f28b7609e706dc2fa2246a045b4",
-    "C-layer": "c90ed3f49680e016942b956a0f7122440b5b317753935588699feb5f1597ecce",
-    "C-rtx": "7e82154400b05effecf6e079c59ef1e0c5dea2fa3fb0cd4096866fbbab56a339",
-    "C-tensor": "e258adcadc8c51b4a057f9ba76be8d76371d45b3a7dfdfc5b209befb4b196fa5",
-    "D-b70": "2a35da95dff7be3b26b6627d918dd2d7d7ebff54f77cd53a27a4d382c29b04e1",
-    "D-layer": "44cc9be11b178b194d3af6a01af9cda56bb7cd2c3469b9e788efecbc63992e07",
-    "D-rtx": "fa31d3aed21843f98179e8fa1624fbc6c928eb04d0b171fdf04411a19d5993ef",
-    "D-tensor": "80557a979259630f36e2e3833216ee29b1a27171ca52e472282bdde821b8ffa0",
-    "E-b70": "d62aea0ac7184d9c2546a3505215bf20ffeb5423b538a85d8255fd1d038e3aee",
-    "E-layer": "8cc363716f42a4825dd7c2e40b460294636843e8632613babd51d62b5a391157",
-    "E-rtx": "b9f93b7a1142d187155b3cbea544d52e1a94fc97b40a0ee386acd125b9142330",
-    "E-tensor": "dfc925a141694d9b4938b61905d3dc47950d80da6a15e9a8880ad8d1b36cea4b"
-  },
   "tests": [
     {
       "batch": 32,
       "depth": 0,
       "id": "pp128-d0",
-      "label": "Prompt · 128 tokens · depth 0 · ctx 256 · requested ub32"
+      "label": "Prompt \u00b7 128 tokens \u00b7 depth 0 \u00b7 ctx 256 \u00b7 requested ub32"
     },
     {
       "batch": 32,
       "depth": 0,
       "id": "pp512-d0",
-      "label": "Prompt · 512 tokens · depth 0 · ctx 512 · requested ub32"
+      "label": "Prompt \u00b7 512 tokens \u00b7 depth 0 \u00b7 ctx 512 \u00b7 requested ub32"
     },
     {
       "batch": 32,
       "depth": 0,
       "id": "tg32-d0",
-      "label": "Generation · 32 tokens · depth 0 · ctx 256 · requested ub32"
+      "label": "Generation \u00b7 32 tokens \u00b7 depth 0 \u00b7 ctx 256 \u00b7 requested ub32"
     },
     {
       "batch": 32,
       "depth": 0,
       "id": "tg64-d0",
-      "label": "Generation · 64 tokens · depth 0 · ctx 256 · requested ub32"
+      "label": "Generation \u00b7 64 tokens \u00b7 depth 0 \u00b7 ctx 256 \u00b7 requested ub32"
     },
     {
       "batch": 32,
       "depth": 1024,
       "id": "pp512-d1024",
-      "label": "Prompt · 512 tokens · depth 1024 · ctx 1536 · requested ub32"
+      "label": "Prompt \u00b7 512 tokens \u00b7 depth 1024 \u00b7 ctx 1536 \u00b7 requested ub32"
     },
     {
       "batch": 32,
       "depth": 1024,
       "id": "tg64-d1024",
-      "label": "Generation · 64 tokens · depth 1024 · ctx 1280 · requested ub32"
+      "label": "Generation \u00b7 64 tokens \u00b7 depth 1024 \u00b7 ctx 1280 \u00b7 requested ub32"
     },
     {
       "batch": 512,
       "depth": 0,
       "id": "pp512-d0-b512",
-      "label": "Prompt · 512 tokens · depth 0 · ctx 512 · requested ub512"
+      "label": "Prompt \u00b7 512 tokens \u00b7 depth 0 \u00b7 ctx 512 \u00b7 requested ub512"
     },
     {
       "batch": 512,
       "depth": 0,
       "id": "tg64-d0-b512",
-      "label": "Generation · 64 tokens · depth 0 · ctx 256 · requested ub512"
+      "label": "Generation \u00b7 64 tokens \u00b7 depth 0 \u00b7 ctx 256 \u00b7 requested ub512"
     }
   ]
 };

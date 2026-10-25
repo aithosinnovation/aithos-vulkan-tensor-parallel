@@ -10,7 +10,7 @@ Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf82
 
 ## What we measured
 
-- One i9-13900KF Windows 11 host, B70 nominal 32 GiB and RTX 3090 nominal 24 GiB. The 3090 is attached over OCuLink (operator-reported hardware detail; telemetry cannot identify a connector); during activity its link was observed at **PCIe Gen3 x4**. An A310 was enumerated and excluded from inference.
+- One i9-13900KF Windows 11 host, B70 nominal 32 GiB and RTX 3090 nominal 24 GiB. The 3090 is attached over OCuLink (operator-reported hardware detail; telemetry cannot identify a connector). Active telemetry samples include PCIe Gen1, Gen2, and Gen3, always at x4; **Gen3 x4 was the highest observed state**, not a fixed speed throughout inference. An A310 was enumerated and excluded from inference.
 - Primary matrix: 12 sequential processes, pp128 / pp512 / tg32 / tg64 at depth 0, then pp512 / tg64 at depth 1024. Two reversed process orders at depth 0; one process block at depth 1024.
 - One finite post-hoc batch sensitivity: 8 processes, pp512 / tg64 at batch / ubatch 512 instead of 32, two reversed orders. Same pinned libraries, model, drivers, sampler, and other runtime flags. Both batch and micro-batch changed together; effects are not separated.
 - Five timed repetitions per test, bounded built-in warmup, 5 s delay per test, 120 s process watchdog. **20 benchmark processes, 280 timings**, no crash, timeout, or retry. Each process lasted 17.8–54.8 s including loading, warmup, and delays; these are not continuous stress tests.
@@ -25,7 +25,7 @@ Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf82
 | Layer split | 104.0–105.9 | 80.6–108.2 |
 | Tensor split | 27.9–39.1 | 26.0–41.2 |
 
-Tensor throughput was **71.4–79.7% lower than RTX alone**, comparing medians within matched process blocks. Tensor generation varied strongly between blocks (27.9–39.1 tok/s). Do not turn that spread into one precise hardware speed claim. In 20 of 56 test records, the first timed repetition was more than 10% below its process median; built-in single-token generation warmup and depth-0 warmup did not eliminate every first-shape cost. Means and standard deviations remain original descriptive observations, not steady-state inference estimates. No slow samples were discarded.
+Tensor throughput was **71.4–79.7% lower than RTX alone**, comparing medians within matched process blocks. Tensor generation varied strongly between blocks (27.9–39.1 tok/s). Do not turn that spread into one precise hardware speed claim. In 19 of 56 test records, the first timed repetition was more than 10% below its process median; built-in single-token generation warmup and depth-0 warmup did not eliminate every first-shape cost. Means and standard deviations remain original descriptive observations, not steady-state inference estimates. No slow samples were discarded.
 
 ## Prompt processing, 512 tokens, depth 0
 
@@ -65,7 +65,7 @@ Raw NMSE divides by the raw reference norm; centered NMSE removes mean shifts an
 
 ## What the transport and memory evidence says
 
-The mixed tensor logs identify exactly the B70 then the 3090 and explicitly select the **generic all-reduce fallback**. Different driver UUIDs prevented the pinned optimized synchronization route. It was never forced. Layer placement was B70 layers 0–14 and RTX layers 15–27 plus the output. Both devices held model buffers and completed the graph.
+The private mixed tensor logs identify exactly the B70 then the 3090 and explicitly select the **generic all-reduce fallback**. The [pinned optimized route](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/ggml/src/ggml-vulkan/ggml-vulkan.cpp#L16017-L16045) requires matching driver UUIDs, semaphore-FD entry points, and exportable/importable opaque-FD timeline semaphores. The recorded driver UUIDs differ, so that requirement is not met; the generic log message alone does not isolate which capability check failed first. The optimized route was never forced. Private allocation logs record layer placement as B70 layers 0–14 and RTX layers 15–27 plus the output. Both devices held model buffers and completed the graph. Those raw logs are not distributed, so the public timing verifier cannot independently re-establish their device-allocation claims.
 
 Memory charts use Windows WDDM device-wide dedicated-memory snapshots for both cards, mapped by DXGI adapter identity in the same boot session. This is observed memory, not per-test tensor allocation or a shared address space. The memory chart takes the maximum over all depth-0 processes, and every plotted maximum comes from the ub512 sensitivity blocks (D/E, two tests each), whose compute buffers are larger than ub32's. Allocation logs are separate: the layer model buffers were 1995.92 MiB + 2172.17 MiB; tensor's 2084.43 MiB Meta print is the **maximum child**, not a sum. Raw WDDM engine counters sometimes exceed 100; they are retained as unvalidated counter values, not published as GPU utilization percentages. Intel power, temperature, and dual-GPU energy are unavailable. NVIDIA device-wide temperature peaked at 67 °C; its 85 °C guard never triggered. This does not establish Intel thermal behavior.
 
