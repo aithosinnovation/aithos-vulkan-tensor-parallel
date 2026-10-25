@@ -1,0 +1,17 @@
+# Sources, prior work and credits
+
+Checked 2026-10-24. Local measured evidence is authoritative for our numbers. External results are context, not comparable data points or endorsements.
+
+- [llama.cpp PR 25051, implementation by pwilkin and contributors](https://github.com/ggml-org/llama.cpp/pull/25051). Open and rebased branch at research time. Our older `c93decc` pin is distinct from the later head. Its author tables include same-vendor setups, not this measurement stack.
+- [Pinned multi-GPU documentation](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/docs/multi-gpu.md). Tensor mode is experimental and interconnect-sensitive, with required flash-attention, KV, and fit constraints.
+- [Pinned model, device, and Meta implementation](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/src/llama-model.cpp). Our runtime logs, not the source alone, establish two-device allocation and the generic fallback.
+- [Pinned Vulkan backend](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/ggml/src/ggml-vulkan/ggml-vulkan.cpp) and [Meta backend](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/ggml/src/ggml-backend-meta.cpp). Source context for synchronized copies and combining. Source inspection alone does not causally attribute the measured slowdown.
+- [Pinned llama-bench](https://github.com/ggml-org/llama.cpp/blob/c93decc7654dac127d18fd61064565ef00bf8244/tools/llama-bench/llama-bench.cpp). Benchmark input, warmup, context, and timing semantics. This is not our text-correctness harness.
+- [Unsloth GGUF model page](https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-7B-GGUF). Name and provenance context. The exact recorded SHA-256 controls identity. No model weights are redistributed.
+- [Vulkan community scoreboard](https://github.com/ggml-org/llama.cpp/discussions/10879). Uncontrolled community reports across versions and hardware. No direct rate comparison.
+- [Experimental tensor-parallel upstream work](https://github.com/ggml-org/llama.cpp/pull/19378). Prior implementation history. Not proof that the current PR or our pin is correct.
+- [Related Intel Arc / eGPU community experience](https://old.reddit.com/r/IntelArc/comments/1kn4n00/my_intel_gpu_llm_home_lab_adventure_a770s_vs_b580/). A community claim, with different cards and software. Not a verified result of this lab.
+- [Official r/LocalLLaMA rules JSON](https://www.reddit.com/r/LocalLLaMA/about/rules.json) and [rules page](https://www.reddit.com/r/LocalLLaMA/about/rules): search first, relevance, self-promotion disclosure, and a restriction on primarily AI-written content. Recheck before any submission. Our mission does not permit automated posting.
+- [llama.cpp contributor and agent policies](https://github.com/ggml-org/llama.cpp/blob/master/AGENTS.md) and [CONTRIBUTING](https://github.com/ggml-org/llama.cpp/blob/master/CONTRIBUTING.md). Human-authorship requirements for upstream contributions. Our private staging is not an upstream submission.
+
+No first-ever claim. Grok found adjacent mixed-vendor and eGPU work, and same-model benchmarking prior art. Distinctiveness is the pinned Windows B70 + 3090 configuration, the four-mode counterbalanced results, the paired full-vocabulary tensor captures, and the carefully scoped negative performance finding. Research searches are not proof that no identical result exists.

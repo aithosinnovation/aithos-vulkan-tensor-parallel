@@ -1,0 +1,938 @@
+{
+  "adapter": "llama-bench",
+  "benchmark_metadata": {
+    "execution": {
+      "argv": [
+        "-m",
+        "${MODEL}",
+        "-p",
+        "128,512",
+        "-n",
+        "32,64",
+        "-d",
+        "0",
+        "-r",
+        "5",
+        "--delay",
+        "5",
+        "-b",
+        "32",
+        "-ub",
+        "32",
+        "-t",
+        "4",
+        "-ngl",
+        "99",
+        "-fa",
+        "on",
+        "-ctk",
+        "f16",
+        "-ctv",
+        "f16",
+        "-mg",
+        "0",
+        "-lm",
+        "mmap",
+        "-lzm",
+        "off",
+        "-o",
+        "json",
+        "-v",
+        "--progress",
+        "--offline",
+        "-dev",
+        "Vulkan2",
+        "-sm",
+        "none"
+      ],
+      "elapsed_seconds": 32.364551,
+      "executable": "${LLAMA_ROOT}\\build\\bin\\llama-bench.exe",
+      "exit_code": 0,
+      "preflight_nvidia_compute_apps": {},
+      "process_cpu_seconds": 8.234375,
+      "stop_reason": null,
+      "telemetry_scope": "NVIDIA device-wide500ms; WDDM adapter-wide memory and benchmark-PID engine counters; clock zone and wall-clock timestamps omitted from this copy; Intel power unavailable",
+      "timed_out": false,
+      "timeout_seconds": 120,
+      "wddm_collector_cpu_seconds": 4.171875,
+      "working_directory": "${LLAMA_ROOT}\\build\\bin"
+    },
+    "hardware": {
+      "Intel_driver": "32.0.101.9150",
+      "NVIDIA_driver": "617.42 / Windows32.0.16.1742",
+      "memory_telemetry": {
+        "b70_observed_min_in_process_mib": 4.13671875,
+        "b70_peak_mib": 4.13671875,
+        "batch": 32,
+        "block": "B",
+        "collector_cpu_seconds": 4.171875,
+        "depth": 0,
+        "id": "B-rtx",
+        "intel_engine_counter_qualification": "Raw WDDM formatted per-process engine counter; values may exceed100 and are not a validated GPU utilization percentage",
+        "intel_engine_counter_raw_max": 0.0,
+        "intel_power_watts": null,
+        "intel_temperature_c": null,
+        "intel_utilization_percent": null,
+        "mode": "rtx",
+        "nvidia_active_link_states": [
+          [
+            3,
+            4
+          ]
+        ],
+        "nvidia_all_link_states": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "nvidia_observed_min_in_process_mib": 4183.234375,
+        "nvidia_peak_mib": 4278.83984375,
+        "nvidia_power_max_watts": 419.25,
+        "nvidia_samples_inside": 64,
+        "nvidia_smi_memory_peak_mib": 4274.0,
+        "nvidia_temperature_max_c": 66.0,
+        "process_cpu_seconds": 8.234375,
+        "source": "WDDM adapter-wide DedicatedUsage, query intervals inside process interval",
+        "wddm_samples_inside": 11
+      },
+      "selected_mode": "rtx"
+    },
+    "loading": {
+      "lazy_mode": "off",
+      "use_direct_io": false,
+      "use_mmap": true
+    },
+    "model": {
+      "name": "DeepSeek-R1-Distill-Qwen-7B",
+      "quantization": "Q4_K_M",
+      "sha256": "78272d8d32084548bd450394a560eb2d70de8232ab96a725769b1f9171235c1c"
+    },
+    "software": {
+      "CPU_optional_ISA": "OFF; as-built frozen comparison",
+      "MSVC": "19.44.35229.0",
+      "Vulkan_SDK": "1.4.363.0",
+      "backend": "native Windows Vulkan",
+      "source_commit": "c93decc7654dac127d18fd61064565ef00bf8244"
+    },
+    "telemetry": {
+      "during_benchmark": {
+        "b70_observed_min_in_process_mib": 4.13671875,
+        "b70_peak_mib": 4.13671875,
+        "batch": 32,
+        "block": "B",
+        "collector_cpu_seconds": 4.171875,
+        "depth": 0,
+        "id": "B-rtx",
+        "intel_engine_counter_qualification": "Raw WDDM formatted per-process engine counter; values may exceed100 and are not a validated GPU utilization percentage",
+        "intel_engine_counter_raw_max": 0.0,
+        "intel_power_watts": null,
+        "intel_temperature_c": null,
+        "intel_utilization_percent": null,
+        "mode": "rtx",
+        "nvidia_active_link_states": [
+          [
+            3,
+            4
+          ]
+        ],
+        "nvidia_all_link_states": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "nvidia_observed_min_in_process_mib": 4183.234375,
+        "nvidia_peak_mib": 4278.83984375,
+        "nvidia_power_max_watts": 419.25,
+        "nvidia_samples_inside": 64,
+        "nvidia_smi_memory_peak_mib": 4274.0,
+        "nvidia_temperature_max_c": 66.0,
+        "process_cpu_seconds": 8.234375,
+        "source": "WDDM adapter-wide DedicatedUsage, query intervals inside process interval",
+        "wddm_samples_inside": 11
+      },
+      "scope": "WDDM adapter-wide DedicatedUsage, query intervals inside process interval"
+    },
+    "timing": {
+      "model_load_definition": "Unavailable in unmodified llama-bench; do not infer from overlapping engine proxy",
+      "model_load_seconds": null
+    }
+  },
+  "benchrun_version": "0.2.0",
+  "content_id": "83a70c7652d8c532a6f5b023c0de193206a79727ead5b1318331f2eb48398483",
+  "data_kind": "recorded",
+  "import_host_snapshot": null,
+  "loading_configuration": {
+    "declared": {
+      "lazy_mode": "off",
+      "use_direct_io": false,
+      "use_mmap": true
+    },
+    "policy": "Observed configuration only. No universal mmap default or workload execution.",
+    "producer_records": [
+      {
+        "devices": "Vulkan2",
+        "flash_attn": 1,
+        "main_gpu": 0,
+        "n_gpu_layers": 99,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "record_index": 0,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      {
+        "devices": "Vulkan2",
+        "flash_attn": 1,
+        "main_gpu": 0,
+        "n_gpu_layers": 99,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "record_index": 1,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      {
+        "devices": "Vulkan2",
+        "flash_attn": 1,
+        "main_gpu": 0,
+        "n_gpu_layers": 99,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "record_index": 2,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      {
+        "devices": "Vulkan2",
+        "flash_attn": 1,
+        "main_gpu": 0,
+        "n_gpu_layers": 99,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "record_index": 3,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      }
+    ]
+  },
+  "measurements": {
+    "combined": [],
+    "engine_load_timer": {
+      "definition": "Time since model-load start until the context first evaluation completes. Includes that evaluation (part of the timed test with --no-warmup); later context values can be cumulative from the same model start. Not isolated model loading, not additive with prompt/generation time.",
+      "first_configuration_seconds": 9.12958,
+      "pairing": "Caller-supplied stderr pairing; hash identifies bytes but does not authenticate same-run origin.",
+      "seconds_since_model_start_by_context": [
+        9.12958,
+        15.231620000000001,
+        22.35098,
+        28.80693
+      ]
+    },
+    "generation": [
+      {
+        "n_gen": 32,
+        "n_prompt": 0,
+        "record_index": 2,
+        "scope": "producer timed record; separate from process wall time; overlaps engine startup timer when first eval is timed",
+        "timed_seconds": 0.2533339,
+        "tokens_per_second": 128.654433
+      },
+      {
+        "n_gen": 64,
+        "n_prompt": 0,
+        "record_index": 3,
+        "scope": "producer timed record; separate from process wall time; overlaps engine startup timer when first eval is timed",
+        "timed_seconds": 0.47792698,
+        "tokens_per_second": 134.122603
+      }
+    ],
+    "model_loading": {
+      "definition": "Unavailable in unmodified llama-bench; do not infer from overlapping engine proxy",
+      "seconds": null,
+      "source": "unavailable"
+    },
+    "prompt_processing": [
+      {
+        "n_gen": 0,
+        "n_prompt": 128,
+        "record_index": 0,
+        "scope": "producer timed record; separate from process wall time; overlaps engine startup timer when first eval is timed",
+        "timed_seconds": 0.09630518,
+        "tokens_per_second": 1329.382979
+      },
+      {
+        "n_gen": 0,
+        "n_prompt": 512,
+        "record_index": 1,
+        "scope": "producer timed record; separate from process wall time; overlaps engine startup timer when first eval is timed",
+        "timed_seconds": 0.40254724,
+        "tokens_per_second": 1272.105158
+      }
+    ],
+    "total_execution": {
+      "definition": "Captured process wall time; excludes import and optional later host snapshot.",
+      "seconds": 32.364551,
+      "source": "metadata.execution.elapsed_seconds"
+    }
+  },
+  "provenance": {
+    "input_sha256": "609059c6e5a0a690eb6aa131747f483a060fbc0875d76cba2cba1feb6b475b6d",
+    "metadata_origin": "user_supplied",
+    "metadata_sha256": "813059507cb48d3bd4ec02bd44f922e0c1a847dae297488161a98a160880e68e",
+    "record_origin": "input_json",
+    "stderr_origin": "user_supplied_unverified_pairing",
+    "stderr_sha256": "94683b79c85c3d4b919e3fe156c2707686a040f108a7894d83b2271434c99fb9"
+  },
+  "raw_results": [
+    {
+      "avg_ns": 96305180,
+      "avg_ts": 1329.382979,
+      "backends": "Vulkan",
+      "build_commit": "c93decc",
+      "build_number": 2,
+      "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+      "cpu_mask": "0x0",
+      "cpu_strict": false,
+      "devices": "Vulkan2",
+      "embeddings": false,
+      "fit_min_ctx": 0,
+      "fit_target": 0,
+      "flash_attn": 1,
+      "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090",
+      "lazy_mode": "off",
+      "load_mode": "mmap",
+      "main_gpu": 0,
+      "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+      "model_n_params": 7615616512,
+      "model_size": 4677120000,
+      "model_type": "qwen2 7B Q4_K - Medium",
+      "n_batch": 32,
+      "n_cpu_moe": 0,
+      "n_depth": 0,
+      "n_gen": 0,
+      "n_gpu_layers": 99,
+      "n_prompt": 128,
+      "n_threads": 4,
+      "n_ubatch": 32,
+      "no_host": false,
+      "no_kv_offload": false,
+      "no_op_offload": 0,
+      "poll": 50,
+      "samples_ns": [
+        98991100,
+        96378600,
+        95344900,
+        95407200,
+        95404100
+      ],
+      "samples_ts": [
+        1293.05,
+        1328.1,
+        1342.49,
+        1341.62,
+        1341.66
+      ],
+      "split_mode": "none",
+      "stddev_ns": 1562050,
+      "stddev_ts": 21.180352,
+      "tensor_buft_overrides": "none",
+      "tensor_split": "0.00",
+      "type_k": "f16",
+      "type_v": "f16"
+    },
+    {
+      "avg_ns": 402547240,
+      "avg_ts": 1272.105158,
+      "backends": "Vulkan",
+      "build_commit": "c93decc",
+      "build_number": 2,
+      "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+      "cpu_mask": "0x0",
+      "cpu_strict": false,
+      "devices": "Vulkan2",
+      "embeddings": false,
+      "fit_min_ctx": 0,
+      "fit_target": 0,
+      "flash_attn": 1,
+      "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090",
+      "lazy_mode": "off",
+      "load_mode": "mmap",
+      "main_gpu": 0,
+      "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+      "model_n_params": 7615616512,
+      "model_size": 4677120000,
+      "model_type": "qwen2 7B Q4_K - Medium",
+      "n_batch": 32,
+      "n_cpu_moe": 0,
+      "n_depth": 0,
+      "n_gen": 0,
+      "n_gpu_layers": 99,
+      "n_prompt": 512,
+      "n_threads": 4,
+      "n_ubatch": 32,
+      "no_host": false,
+      "no_kv_offload": false,
+      "no_op_offload": 0,
+      "poll": 50,
+      "samples_ns": [
+        396842200,
+        401833400,
+        402200300,
+        399767800,
+        412092500
+      ],
+      "samples_ts": [
+        1290.19,
+        1274.16,
+        1273,
+        1280.74,
+        1242.44
+      ],
+      "split_mode": "none",
+      "stddev_ns": 5744882,
+      "stddev_ts": 17.934492,
+      "tensor_buft_overrides": "none",
+      "tensor_split": "0.00",
+      "type_k": "f16",
+      "type_v": "f16"
+    },
+    {
+      "avg_ns": 253333900,
+      "avg_ts": 128.654433,
+      "backends": "Vulkan",
+      "build_commit": "c93decc",
+      "build_number": 2,
+      "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+      "cpu_mask": "0x0",
+      "cpu_strict": false,
+      "devices": "Vulkan2",
+      "embeddings": false,
+      "fit_min_ctx": 0,
+      "fit_target": 0,
+      "flash_attn": 1,
+      "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090",
+      "lazy_mode": "off",
+      "load_mode": "mmap",
+      "main_gpu": 0,
+      "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+      "model_n_params": 7615616512,
+      "model_size": 4677120000,
+      "model_type": "qwen2 7B Q4_K - Medium",
+      "n_batch": 32,
+      "n_cpu_moe": 0,
+      "n_depth": 0,
+      "n_gen": 32,
+      "n_gpu_layers": 99,
+      "n_prompt": 0,
+      "n_threads": 4,
+      "n_ubatch": 32,
+      "no_host": false,
+      "no_kv_offload": false,
+      "no_op_offload": 0,
+      "poll": 50,
+      "samples_ns": [
+        328798300,
+        237142100,
+        234427500,
+        234111500,
+        232190100
+      ],
+      "samples_ts": [
+        97.3241,
+        134.94,
+        136.503,
+        136.687,
+        137.818
+      ],
+      "split_mode": "none",
+      "stddev_ns": 42222810,
+      "stddev_ts": 17.54417,
+      "tensor_buft_overrides": "none",
+      "tensor_split": "0.00",
+      "type_k": "f16",
+      "type_v": "f16"
+    },
+    {
+      "avg_ns": 477926980,
+      "avg_ts": 134.122603,
+      "backends": "Vulkan",
+      "build_commit": "c93decc",
+      "build_number": 2,
+      "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+      "cpu_mask": "0x0",
+      "cpu_strict": false,
+      "devices": "Vulkan2",
+      "embeddings": false,
+      "fit_min_ctx": 0,
+      "fit_target": 0,
+      "flash_attn": 1,
+      "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090",
+      "lazy_mode": "off",
+      "load_mode": "mmap",
+      "main_gpu": 0,
+      "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+      "model_n_params": 7615616512,
+      "model_size": 4677120000,
+      "model_type": "qwen2 7B Q4_K - Medium",
+      "n_batch": 32,
+      "n_cpu_moe": 0,
+      "n_depth": 0,
+      "n_gen": 64,
+      "n_gpu_layers": 99,
+      "n_prompt": 0,
+      "n_threads": 4,
+      "n_ubatch": 32,
+      "no_host": false,
+      "no_kv_offload": false,
+      "no_op_offload": 0,
+      "poll": 50,
+      "samples_ns": [
+        513037300,
+        464282300,
+        465271700,
+        462383700,
+        484659900
+      ],
+      "samples_ts": [
+        124.747,
+        137.847,
+        137.554,
+        138.413,
+        132.051
+      ],
+      "split_mode": "none",
+      "stddev_ns": 21598574,
+      "stddev_ts": 5.836163,
+      "tensor_buft_overrides": "none",
+      "tensor_split": "0.00",
+      "type_k": "f16",
+      "type_v": "f16"
+    }
+  ],
+  "records": [
+    {
+      "benchmark_time": null,
+      "data_kind": "recorded",
+      "engine_load_timer": {
+        "association": "positional, caller-supplied log, matching count",
+        "definition": "Time since model-load start until the context first evaluation completes. Includes that evaluation (part of the timed test with --no-warmup); later context values can be cumulative from the same model start. Not isolated model loading, not additive with prompt/generation time.",
+        "seconds_since_model_start": 9.12958
+      },
+      "hardware": {
+        "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+        "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090"
+      },
+      "kind": "prompt",
+      "kind_origin": "derived_from_token_counts",
+      "loading_configuration": {
+        "declared": {
+          "lazy_mode": "off",
+          "use_direct_io": false,
+          "use_mmap": true
+        },
+        "origin": "producer JSON plus unmodified supplied metadata.loading; missing values unknown",
+        "producer_reported": {
+          "devices": "Vulkan2",
+          "flash_attn": 1,
+          "main_gpu": 0,
+          "n_gpu_layers": 99,
+          "no_host": false,
+          "no_kv_offload": false,
+          "no_op_offload": 0,
+          "split_mode": "none",
+          "tensor_buft_overrides": "none",
+          "tensor_split": "0.00",
+          "type_k": "f16",
+          "type_v": "f16"
+        },
+        "producer_status": "reported"
+      },
+      "metrics": {
+        "samples_ns": [
+          98991100,
+          96378600,
+          95344900,
+          95407200,
+          95404100
+        ],
+        "samples_ts": [
+          1293.05,
+          1328.1,
+          1342.49,
+          1341.62,
+          1341.66
+        ],
+        "stddev_tokens_per_second": 21.180352,
+        "tokens_per_second": 1329.382979
+      },
+      "model": {
+        "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+        "model_n_params": 7615616512,
+        "model_size": 4677120000,
+        "model_type": "qwen2 7B Q4_K - Medium"
+      },
+      "parameters": {
+        "cpu_mask": "0x0",
+        "cpu_strict": false,
+        "devices": "Vulkan2",
+        "embeddings": false,
+        "fit_min_ctx": 0,
+        "fit_target": 0,
+        "flash_attn": 1,
+        "lazy_mode": "off",
+        "load_mode": "mmap",
+        "main_gpu": 0,
+        "n_batch": 32,
+        "n_cpu_moe": 0,
+        "n_depth": 0,
+        "n_gen": 0,
+        "n_gpu_layers": 99,
+        "n_prompt": 128,
+        "n_threads": 4,
+        "n_ubatch": 32,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "poll": 50,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      "software": {
+        "backends": "Vulkan",
+        "build_commit": "c93decc",
+        "build_number": 2
+      }
+    },
+    {
+      "benchmark_time": null,
+      "data_kind": "recorded",
+      "engine_load_timer": {
+        "association": "positional, caller-supplied log, matching count",
+        "definition": "Time since model-load start until the context first evaluation completes. Includes that evaluation (part of the timed test with --no-warmup); later context values can be cumulative from the same model start. Not isolated model loading, not additive with prompt/generation time.",
+        "seconds_since_model_start": 15.231620000000001
+      },
+      "hardware": {
+        "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+        "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090"
+      },
+      "kind": "prompt",
+      "kind_origin": "derived_from_token_counts",
+      "loading_configuration": {
+        "declared": {
+          "lazy_mode": "off",
+          "use_direct_io": false,
+          "use_mmap": true
+        },
+        "origin": "producer JSON plus unmodified supplied metadata.loading; missing values unknown",
+        "producer_reported": {
+          "devices": "Vulkan2",
+          "flash_attn": 1,
+          "main_gpu": 0,
+          "n_gpu_layers": 99,
+          "no_host": false,
+          "no_kv_offload": false,
+          "no_op_offload": 0,
+          "split_mode": "none",
+          "tensor_buft_overrides": "none",
+          "tensor_split": "0.00",
+          "type_k": "f16",
+          "type_v": "f16"
+        },
+        "producer_status": "reported"
+      },
+      "metrics": {
+        "samples_ns": [
+          396842200,
+          401833400,
+          402200300,
+          399767800,
+          412092500
+        ],
+        "samples_ts": [
+          1290.19,
+          1274.16,
+          1273,
+          1280.74,
+          1242.44
+        ],
+        "stddev_tokens_per_second": 17.934492,
+        "tokens_per_second": 1272.105158
+      },
+      "model": {
+        "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+        "model_n_params": 7615616512,
+        "model_size": 4677120000,
+        "model_type": "qwen2 7B Q4_K - Medium"
+      },
+      "parameters": {
+        "cpu_mask": "0x0",
+        "cpu_strict": false,
+        "devices": "Vulkan2",
+        "embeddings": false,
+        "fit_min_ctx": 0,
+        "fit_target": 0,
+        "flash_attn": 1,
+        "lazy_mode": "off",
+        "load_mode": "mmap",
+        "main_gpu": 0,
+        "n_batch": 32,
+        "n_cpu_moe": 0,
+        "n_depth": 0,
+        "n_gen": 0,
+        "n_gpu_layers": 99,
+        "n_prompt": 512,
+        "n_threads": 4,
+        "n_ubatch": 32,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "poll": 50,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      "software": {
+        "backends": "Vulkan",
+        "build_commit": "c93decc",
+        "build_number": 2
+      }
+    },
+    {
+      "benchmark_time": null,
+      "data_kind": "recorded",
+      "engine_load_timer": {
+        "association": "positional, caller-supplied log, matching count",
+        "definition": "Time since model-load start until the context first evaluation completes. Includes that evaluation (part of the timed test with --no-warmup); later context values can be cumulative from the same model start. Not isolated model loading, not additive with prompt/generation time.",
+        "seconds_since_model_start": 22.35098
+      },
+      "hardware": {
+        "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+        "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090"
+      },
+      "kind": "generation",
+      "kind_origin": "derived_from_token_counts",
+      "loading_configuration": {
+        "declared": {
+          "lazy_mode": "off",
+          "use_direct_io": false,
+          "use_mmap": true
+        },
+        "origin": "producer JSON plus unmodified supplied metadata.loading; missing values unknown",
+        "producer_reported": {
+          "devices": "Vulkan2",
+          "flash_attn": 1,
+          "main_gpu": 0,
+          "n_gpu_layers": 99,
+          "no_host": false,
+          "no_kv_offload": false,
+          "no_op_offload": 0,
+          "split_mode": "none",
+          "tensor_buft_overrides": "none",
+          "tensor_split": "0.00",
+          "type_k": "f16",
+          "type_v": "f16"
+        },
+        "producer_status": "reported"
+      },
+      "metrics": {
+        "samples_ns": [
+          328798300,
+          237142100,
+          234427500,
+          234111500,
+          232190100
+        ],
+        "samples_ts": [
+          97.3241,
+          134.94,
+          136.503,
+          136.687,
+          137.818
+        ],
+        "stddev_tokens_per_second": 17.54417,
+        "tokens_per_second": 128.654433
+      },
+      "model": {
+        "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+        "model_n_params": 7615616512,
+        "model_size": 4677120000,
+        "model_type": "qwen2 7B Q4_K - Medium"
+      },
+      "parameters": {
+        "cpu_mask": "0x0",
+        "cpu_strict": false,
+        "devices": "Vulkan2",
+        "embeddings": false,
+        "fit_min_ctx": 0,
+        "fit_target": 0,
+        "flash_attn": 1,
+        "lazy_mode": "off",
+        "load_mode": "mmap",
+        "main_gpu": 0,
+        "n_batch": 32,
+        "n_cpu_moe": 0,
+        "n_depth": 0,
+        "n_gen": 32,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_threads": 4,
+        "n_ubatch": 32,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "poll": 50,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      "software": {
+        "backends": "Vulkan",
+        "build_commit": "c93decc",
+        "build_number": 2
+      }
+    },
+    {
+      "benchmark_time": null,
+      "data_kind": "recorded",
+      "engine_load_timer": {
+        "association": "positional, caller-supplied log, matching count",
+        "definition": "Time since model-load start until the context first evaluation completes. Includes that evaluation (part of the timed test with --no-warmup); later context values can be cumulative from the same model start. Not isolated model loading, not additive with prompt/generation time.",
+        "seconds_since_model_start": 28.80693
+      },
+      "hardware": {
+        "cpu_info": "13th Gen Intel(R) Core(TM) i9-13900KF",
+        "gpu_info": "Intel(R) Arc(TM) A310 LP Graphics, Intel(R) Arc(TM) Pro B70 Graphics, NVIDIA GeForce RTX 3090"
+      },
+      "kind": "generation",
+      "kind_origin": "derived_from_token_counts",
+      "loading_configuration": {
+        "declared": {
+          "lazy_mode": "off",
+          "use_direct_io": false,
+          "use_mmap": true
+        },
+        "origin": "producer JSON plus unmodified supplied metadata.loading; missing values unknown",
+        "producer_reported": {
+          "devices": "Vulkan2",
+          "flash_attn": 1,
+          "main_gpu": 0,
+          "n_gpu_layers": 99,
+          "no_host": false,
+          "no_kv_offload": false,
+          "no_op_offload": 0,
+          "split_mode": "none",
+          "tensor_buft_overrides": "none",
+          "tensor_split": "0.00",
+          "type_k": "f16",
+          "type_v": "f16"
+        },
+        "producer_status": "reported"
+      },
+      "metrics": {
+        "samples_ns": [
+          513037300,
+          464282300,
+          465271700,
+          462383700,
+          484659900
+        ],
+        "samples_ts": [
+          124.747,
+          137.847,
+          137.554,
+          138.413,
+          132.051
+        ],
+        "stddev_tokens_per_second": 5.836163,
+        "tokens_per_second": 134.122603
+      },
+      "model": {
+        "model_filename": "DeepSeek-R1-Distill-Qwen-7B-Q4_K_M.gguf",
+        "model_n_params": 7615616512,
+        "model_size": 4677120000,
+        "model_type": "qwen2 7B Q4_K - Medium"
+      },
+      "parameters": {
+        "cpu_mask": "0x0",
+        "cpu_strict": false,
+        "devices": "Vulkan2",
+        "embeddings": false,
+        "fit_min_ctx": 0,
+        "fit_target": 0,
+        "flash_attn": 1,
+        "lazy_mode": "off",
+        "load_mode": "mmap",
+        "main_gpu": 0,
+        "n_batch": 32,
+        "n_cpu_moe": 0,
+        "n_depth": 0,
+        "n_gen": 64,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_threads": 4,
+        "n_ubatch": 32,
+        "no_host": false,
+        "no_kv_offload": false,
+        "no_op_offload": 0,
+        "poll": 50,
+        "split_mode": "none",
+        "tensor_buft_overrides": "none",
+        "tensor_split": "0.00",
+        "type_k": "f16",
+        "type_v": "f16"
+      },
+      "software": {
+        "backends": "Vulkan",
+        "build_commit": "c93decc",
+        "build_number": 2
+      }
+    }
+  ],
+  "schema_version": 2,
+  "warnings": [
+    "Benchmark metadata missing software.build_flags; do not infer from import host.",
+    "Benchmark metadata missing software.commit; do not infer from import host.",
+    "Benchmark metadata missing hardware.os; do not infer from import host."
+  ]
+}

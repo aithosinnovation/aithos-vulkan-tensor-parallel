@@ -1,0 +1,16 @@
+{
+  "CMake": "3.31.6-msvc6",
+  "CPU": "Intel Core i9-13900KF",
+  "IntelDriver": "32.0.101.9150",
+  "MSVC": "19.44.35229.0",
+  "Ninja": "1.12.1",
+  "NvidiaDriver": "617.42/32.0.16.1742",
+  "VSBuildTools": "17.14.42",
+  "VulkanSDK": "1.4.363.0",
+  "WindowsSDK": "10.0.26100.0",
+  "build_flags": "Release, shared libraries,dynamic backend loading,GGML_VULKAN=ON,CUDA/SYCL/RPC=OFF,GGML_NATIVE=OFF; all optional x86 ISA flags OFF; exact flags in METHOD.md",
+  "model_sha256": "78272d8d32084548bd450394a560eb2d70de8232ab96a725769b1f9171235c1c",
+  "source_commit": "c93decc7654dac127d18fd61064565ef00bf8244",
+  "source_tree": "2283717ec7405683ed30b2e3d52ef7267c64c16b",
+  "source_unchanged": true
+}

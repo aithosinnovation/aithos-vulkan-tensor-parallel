@@ -1,0 +1,27 @@
+'use strict';
+const D=window.BENCH_DATA, names={rtx:'RTX 3090',b70:'Arc Pro B70',layer:'Layer split',tensor:'Tensor split'}, colors={rtx:'#6cafff',b70:'#51dec0',layer:'#ffd178',tensor:'#ef8cb3'};
+const $=id=>document.getElementById(id), fmt=n=>Number.isFinite(n)?n.toFixed(n>0&&n<.01?3:n<10?2:1):'unavailable';
+if(!D){$('headline').textContent='Measured data is unavailable. Open this page with its accompanying data.js file.';}else{
+$('headline').textContent=D.headline;
+D.tests.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=(t.id.startsWith('pp')?'Prompt ':'Generation ')+t.id.match(/^(?:pp|tg)(\d+)/)[1]+' · depth '+t.depth+' · req ub'+t.batch;$('workload').append(o)});
+$('workload').value=D.defaultTest;
+function selected(){return [...document.querySelectorAll('fieldset input:checked')].map(x=>x.value)}
+function render(){
+ const test=D.tests.find(x=>x.id===$('workload').value), modes=selected(), memory=$('metric').value==='memory';
+ const rows=D.records.filter(r=>r.test===test.id&&modes.includes(r.mode));
+ const mobile=window.innerWidth<760; const W=mobile?600:1000,L=150,R=35,H=320,TOP=28,BOT=270, modeY=i=>TOP+35+i*58;
+ let elems=[],max=0;
+ if(memory){const mem=D.memory.filter(r=>modes.includes(r.mode)&&r.depth===test.depth&&r.batch===test.batch);mem.forEach(r=>{[r.b70_peak_mib,r.nvidia_peak_mib].forEach(n=>{if(n!==null)max=Math.max(max,n/1024)})});max=Math.max(1,max*1.15);
+ const x=n=>L+n/max*(W-L-R);modes.forEach((m,i)=>{const group=mem.filter(r=>r.mode===m);let y=modeY(i);elems.push(`<text x="8" y="${y+4}" fill="${colors[m]}" font-size="${mobile?22:17}">${names[m]}</text>`);['b70_peak_mib','nvidia_peak_mib'].forEach((key,j)=>{let vals=group.map(r=>r[key]).filter(n=>n!==null).map(n=>n/1024),value=vals.length?Math.max(...vals):null;if(value!==null)elems.push(`<rect x="${L}" y="${y-14+j*15}" width="${x(value)-L}" height="11" rx="2" fill="${j===0?'#51dec0':'#6cafff'}"/><text x="${x(value)+8}" y="${y-4+j*15}" fill="#eff5f7" font-size="${mobile?18:12}">${fmt(value)} GiB</text>`)});});
+ $('chart-title').textContent='Observed device-wide memory peak';$('sample-count').textContent='B70: green · RTX: blue';$('chart-caption').textContent='Maximum observed WDDM dedicated memory during each process, across selected-depth blocks. Device-wide snapshots include loading and every test in that process; not a per-workload allocation or shared memory pool. Missing values are unavailable, never zero. No Intel power measurement.';
+ }else{rows.forEach(r=>r.samples_ts.forEach(v=>max=Math.max(max,v)));max=Math.max(1,max*1.15);const x=n=>L+n/max*(W-L-R);
+ modes.forEach((m,i)=>{const group=rows.filter(r=>r.mode===m);let y=modeY(i);elems.push(`<text x="8" y="${y+4}" fill="${colors[m]}" font-size="${mobile?22:17}">${names[m]}</text>`);group.forEach((r,b)=>{const yy=y+(b-(group.length-1)/2)*20;elems.push(`<line x1="${x(r.min)}" x2="${x(r.max)}" y1="${yy}" y2="${yy}" stroke="${colors[m]}" stroke-width="2" opacity=".7"/><line x1="${x(r.median)}" x2="${x(r.median)}" y1="${yy-8}" y2="${yy+8}" stroke="${colors[m]}" stroke-width="4"/>`);r.samples_ts.forEach((v,k)=>{const cy=yy+(k-2)*2.8;elems.push(['B','E'].includes(r.block)?`<path d="M${x(v)},${cy-4}l4,8h-8z" fill="${colors[m]}"/>`:`<circle cx="${x(v)}" cy="${cy}" r="3.5" fill="${colors[m]}"/>`)});});});
+ $('chart-title').textContent=test.label;$('sample-count').textContent=rows.reduce((a,r)=>a+r.samples_ts.length,0)+' measured timings';$('chart-caption').textContent='Tokens/s. All samples shown; tall marks = process medians, horizontal lines = process ranges. Circles: first order (or C at depth1024); triangles: reverse order. Zero-baseline axis. Within-process repetitions are not independent process replicates. Warmup is bounded and generation warmup is one token. Requested ub'+test.batch+'; native effective ub'+(rows[0]?.effective_ubatch??'unavailable')+'.';
+ }
+ const xx=n=>L+n/max*(W-L-R);for(let i=0;i<=5;i++){const v=max*i/5,x=xx(v);elems.unshift(`<line x1="${x}" x2="${x}" y1="${TOP}" y2="${BOT}" stroke="#344450" stroke-width="1"/><text x="${x}" y="${BOT+24}" text-anchor="middle" fill="#aabac5" font-size="${mobile?20:13}">${fmt(v)}</text>`)}
+ $('chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${memory?'Observed adapter memory':'Individual measured throughput samples'} for ${test.label}"><title>${memory?'Observed memory':'Measured throughput'}: ${test.label}</title>${elems.join('')}<text x="${W-R}" y="${H-2}" text-anchor="end" fill="#aabac5" font-size="${mobile?18:12}">${memory?'GiB · observed device-wide peak':'tokens / second →'}</text></svg>`;
+ let html='<table><thead><tr><th>Configuration</th><th>Block</th><th>Median tok/s</th><th>Min–max tok/s</th><th>Speed / RTX median</th></tr></thead><tbody>';
+ if(!memory){rows.forEach(r=>{const ref=D.records.find(a=>a.test===test.id&&a.mode==='rtx'&&a.block===r.block);html+=`<tr><td>${names[r.mode]}</td><td>${r.block}</td><td>${fmt(r.median)}</td><td>${fmt(r.min)}–${fmt(r.max)}</td><td>${ref?fmt(r.median/ref.median)+'×':'unavailable'}</td></tr>`});$('numbers').innerHTML=html+'</tbody></table>';}else{$('numbers').innerHTML='<p class="small">The memory chart uses the same WDDM provider for both GPUs. NVIDIA nvidia-smi readings are retained separately in the evidence; they are not mixed into these bars.</p>';}
+}
+$('metric').addEventListener('change',render);$('workload').addEventListener('change',render);document.querySelectorAll('fieldset input').forEach(x=>x.addEventListener('change',render));render();
+}

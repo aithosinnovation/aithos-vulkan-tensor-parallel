@@ -1,0 +1,102 @@
+[
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "006f1cd56defb1ba7e03e02913688c198d6519cae9aed55ff78c6232d0abcc3b",
+    "run_id": "A-b70"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "3d2ed5386d94e9ddf8ad0cbbea57488a1c2c33bd51d94f9e198a78035b6d1446",
+    "run_id": "A-layer"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "f2e1677f043ddcc289e63a2984b4854ca6ff75b5da4db94fb51741a397aa7852",
+    "run_id": "A-rtx"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "94ef908eacaed3ab42053c1089600b4e04b02c38d44a058f67bec99119592290",
+    "run_id": "A-tensor"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "c6974607a327058e498e5bf4e8032eff3f0de87c58e482f1bd98ad3503f45507",
+    "run_id": "B-b70"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "c8b0b56dd75714307fe565a8216c1f17baa69f2f14e4993424da1bb53cd62358",
+    "run_id": "B-layer"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "609059c6e5a0a690eb6aa131747f483a060fbc0875d76cba2cba1feb6b475b6d",
+    "run_id": "B-rtx"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "5060497dd014d3a601ef63c98c780f72610b8cb500be2041905bcdc76dd7fbab",
+    "run_id": "B-tensor"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "126b15ca493e463cf7bf042e4c91842c7f1e866adf3cec3b4939bb9c480138af",
+    "run_id": "C-b70"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "086cc65fd1605d5679212aea65daf814fd01368692b5a7a9b948d48751d393a0",
+    "run_id": "C-layer"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "f39eb94ceb11495ffbb1390c2853d2510402379f53805f15fb5cf6453ddc0347",
+    "run_id": "C-rtx"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "9fddb755163c7588f1a40d1f48cc393d4e1d0c0f6c4daa5249781074c92730f3",
+    "run_id": "C-tensor"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "aeed1b8a9a9b69cd6196bf25ee757e915dc27476b82912c986a19461d5dc1b90",
+    "run_id": "D-b70"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "b15f805f9c3c3bb9fc510fea05a5c8e38356b84366ccecaf254d2e6a72d9ea41",
+    "run_id": "D-layer"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "57656550f5902382829b53f66153b5c3e466e88c713e02c81b8ce3a23ea7b8c6",
+    "run_id": "D-rtx"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "57b3b9f6c7d4cf6c9fd6c906df704d59c2c1b7096374da89055cba8c9254e5b5",
+    "run_id": "D-tensor"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "487844334324791786bda37b7660c83347b1aaa7aac9ae87a6c56ac8838da589",
+    "run_id": "E-b70"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "8ef39ed946435d22b0d167acf7cecf41a6af535efea9d1312ce60e5fa3f27f78",
+    "run_id": "E-layer"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "a3feca9a89165ec38674092b3e0005533980b730730a3eb3b20ec4ffeb86e843",
+    "run_id": "E-rtx"
+  },
+  {
+    "changes": "model filename basename; private identifiers and paths redacted; absolute test timestamps, process IDs and local UTC offset removed; all numeric benchmark fields unchanged",
+    "release_sha256": "0347cbff239fe823364e154f6d73fc6166bb75ba37df76d5dd78a23bafb4757c",
+    "run_id": "E-tensor"
+  }
+]
