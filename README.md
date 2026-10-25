@@ -2,7 +2,7 @@
 
 **Yes, an Intel Arc Pro B70 and NVIDIA RTX 3090 executed one model together. For the small 7B model and frozen build we measured, the equal-weight mixed configurations did not beat the RTX 3090 alone.** Layer splitting was consistently faster than tensor splitting. Widening the batch changed absolute prompt speeds substantially, but not the four-mode ordering. Prompt ratios versus the RTX are batch-sensitive, so the two prompt tables below are not one ratio.
 
-Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf8244**, DeepSeek-R1-Distill-Qwen-7B Q4_K_M. This is a **private release candidate**, prepared by Aithos Innovation, not a public repository or production recommendation. The implementation belongs to the llama.cpp / PR contributors; our contribution is the external test protocol, recorded cross-vendor measurements, reproducibility tooling, and analysis.
+Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf8244**, DeepSeek-R1-Distill-Qwen-7B Q4_K_M. This public research report is prepared by Aithos Innovation and documents one exploratory benchmark; it is not a production recommendation. The implementation belongs to the llama.cpp / PR contributors; our contribution is the external test protocol, recorded cross-vendor measurements, reproducibility tooling, and analysis.
 
 [Open the offline explorer](docs/index.html) · [Method and commands](METHOD.md) · [Recompute offline](VERIFY.md) · [Every sample](data/samples.csv) · [Source references](references.md)
 

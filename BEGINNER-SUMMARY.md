@@ -45,9 +45,9 @@ This was one computer, one model, short runs, and a particular build whose optio
 ## Explore the evidence
 
 - [Interactive benchmark explorer](docs/index.html) — choose a workload and see the stored samples.
-- [Full technical report](README.md) — detailed results and limitations; unchanged from the release candidate.
+- [Full technical report](README.md) — detailed findings and limitations.
 - [Method and reproduction details](METHOD.md).
 - [Every timing sample](data/samples.csv).
 - [Offline calculation checks](VERIFY.md).
 
-This compact preview omits the large full-logit numerical archive and pinned llama.cpp source archive. They remain separate release assets for a later, approved distribution.
+Full logits and the upstream source archive are omitted; the report lists the tested commit and model hash. Summarized numerical checks are included in the repository.
