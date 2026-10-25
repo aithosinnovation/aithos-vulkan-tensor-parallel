@@ -6,7 +6,7 @@ Original Aithos code and documentation are licensed under MIT; see `LICENSE`. Th
 
 ## Accuracy review corrections — 2026-10-25
 
-- Standardized text files to LF and refreshed the manifest. The previous manifest mixed line-ending conventions and could fail on a clean checkout even though the publisher's working copy passed.
+- Standardized text files to LF and regenerated the manifest from those canonical bytes. The previous manifest contained both line-ending mismatches and incorrect hashes for `assets/MEDIA.md`, `LICENSE`, `LICENSE-NOTICES.md`, and `RELEASE-NOTES.md`; normalizing line endings alone was insufficient. `.gitattributes` now enforces LF, and verification passes from fresh checkouts with Git's Windows line-ending conversion enabled or disabled.
 - Corrected the beginner summary's ranking to RTX, layer split, B70, tensor split. Corrected the count of slow first repetitions from 20 to 19 of 56. Published timing measurements and headline conclusions are unchanged.
 - Expanded the offline verifier to recompute rates from elapsed nanoseconds and check additional comparison fields; documented its scope and exclusions precisely.
 - Clarified fresh CMake defaults, the recorded case order, and the manual 3-second pause between cases. The per-case benchmark scripts do not supply that pause.
