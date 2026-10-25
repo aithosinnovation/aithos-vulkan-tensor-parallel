@@ -4,6 +4,30 @@
     {
       "source": "/",
       "destination": "/docs/index.html"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/docs/index.html"
+    },
+    {
+      "source": "/beginner.html",
+      "destination": "/docs/beginner.html"
+    },
+    {
+      "source": "/style.css",
+      "destination": "/docs/style.css"
+    },
+    {
+      "source": "/app.js",
+      "destination": "/docs/app.js"
+    },
+    {
+      "source": "/data.js",
+      "destination": "/docs/data.js"
+    },
+    {
+      "source": "/data.json",
+      "destination": "/docs/data.json"
     }
   ]
 }

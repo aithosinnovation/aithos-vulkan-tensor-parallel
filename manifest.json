@@ -114,7 +114,7 @@
     "vendor/benchrun/collect.py": "fe55cac35d73f9fe0af7f86105d3dcd0c2c86825330ab1662cd115940fc5436f",
     "vendor/benchrun/core.py": "f56416f58d7abe1d60c39bc164bba36e5342c44e263ac9a4fea3da00dc17fe64",
     "vendor/benchrun/measure.py": "ed9e92d183f3989aa2378ff31ee4ede16f0c45b194dc09e374950c55b31ebc1c",
-    "vercel.json": "5525db0557b9c5502da9b925d4b4b2b19d7f5de14544df4811132579873a3dc0",
+    "vercel.json": "2108b255778280e174c40570b2af1c2e643148c46962c8d0895c4afa8eee443e",
     "VERIFY.md": "b42e33a147f82f0b2d739cc84dca951d79768130114cec1b1f0b4df67254fbe3"
   }
 }
