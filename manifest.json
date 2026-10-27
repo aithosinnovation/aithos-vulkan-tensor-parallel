@@ -2,8 +2,10 @@
   "schema": "aithos-public-release-files/1",
   "files_sha256": {
     ".gitattributes": "eccbebbd50c7e8efa0b1e3288abfe469b477984d63e7ef238a6a59d7ee61b0fe",
+    ".github/workflows/vercel-production.yml": "fe18f06cb4280f815c5ac3b3890463bd2e26f0db1624fc7f824f3d3a12bc8add",
     ".gitignore": "7e16cc5ace739c474d7293a443ad0a27cb16b590fb84f215ee440e01209c588b",
     "BEGINNER-SUMMARY.md": "11288f3faf4e4468585f66d1d3e3bc6b2ed6d06de27923f6e51a8842167798c0",
+    "DEPLOYMENT.md": "8444fd01a4af167587eb692ec021993bb26008637c85218f5e8a4eaf36c8bfd7",
     "LICENSE": "d5a0b1b770f93640782ca83d0d6c0181b7bc42ac05ef3c231194aceaf0ec0c23",
     "LICENSE-NOTICES.md": "7a909702d692bd775bccd2712fd989c979b80b1181febf3d27a62d75f5aecac9",
     "METHOD.md": "67d65f15543f53e953413b6b9da7fdb1e0724d504c95b4db00682516e4d510f6",
@@ -111,6 +113,7 @@
     "scripts/supervisor-as-collected.ps1": "986a4e773b52f173ec32df322e53c311177ded7cefa91ee30ed01b304b69d395",
     "scripts/verify.py": "f3572eab9b170ea227938c43b7f4b96ede90868d7dcfa057fbe96d29392fa7df",
     "scripts/verify_numerical.py": "a9cf1e0f57ae153a876712296b24b5b897d5a9b9c373e1c98c0e6899ff69723c",
+    "scripts/verify_site.py": "fb4656faedbb9f804bc8528f69bf869ce7f2bcfc7f9aa9a75535699595dfc18a",
     "vendor/benchrun/__init__.py": "4ec3f4f5219decdb69684320ae51eb00893c63c0d98c7bad0429298af86cf964",
     "vendor/benchrun/__main__.py": "8cd127a5784ba6cc14a50eb394ddb37b7f581c74e44c53c5142266f31e9ef767",
     "vendor/benchrun/collect.py": "fe55cac35d73f9fe0af7f86105d3dcd0c2c86825330ab1662cd115940fc5436f",

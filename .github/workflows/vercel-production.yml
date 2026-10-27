@@ -1,0 +1,103 @@
+name: Deploy benchmark publication
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmark-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'aithosinnovation/aithos-vulkan-tensor-parallel' && github.ref == 'refs/heads/main'
+    environment: benchmark-production
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out the approved source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Verify measurements and file integrity
+        run: python3 -I -B scripts/verify.py
+
+      - name: Require credentials for the existing benchmark project
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          python3 - <<'PYCODE'
+          import hashlib
+          import os
+          import sys
+
+          for name in ('VERCEL_TOKEN', 'VERCEL_ORG_ID', 'VERCEL_PROJECT_ID'):
+              if not os.environ.get(name):
+                  sys.exit(f'Required encrypted Actions secret {name} is missing.')
+          # Identity digests prevent a mistaken secret from targeting another project.
+          expected = {
+              'VERCEL_ORG_ID': 'e78571b998da146365267a86cdcbdbc1a4f3b2449bc6fd2964046f9ee64bb635',
+              'VERCEL_PROJECT_ID': 'a20a652f5fc42606e274ad4217e9082aa3538ead7ea3da02c215736e450b2422',
+          }
+          for name, digest in expected.items():
+              if hashlib.sha256(os.environ[name].encode()).hexdigest() != digest:
+                  sys.exit(f'{name} does not identify the approved benchmark project.')
+          PYCODE
+
+      - name: Use the validated Node.js version
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.22.1'
+
+      - name: Install the pinned official Vercel CLI
+        run: npm install --global vercel@64.5.0
+
+      - name: Deploy only the existing benchmark project
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          CI: '1'
+        run: |
+          python3 - <<'PYCODE'
+          import os
+          import subprocess
+          import sys
+          tip = subprocess.check_output([
+              'git', 'ls-remote',
+              'https://github.com/aithosinnovation/aithos-vulkan-tensor-parallel.git',
+              'refs/heads/main',
+          ], text=True).split()[0]
+          if tip != os.environ['GITHUB_SHA']:
+              sys.exit('This run is stale; only current main may be deployed.')
+          PYCODE
+          vercel deploy --prod --yes --non-interactive --json --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID" > "$RUNNER_TEMP/benchmark-deployment.json"
+          python3 - "$RUNNER_TEMP/benchmark-deployment.json" <<'PYCODE'
+          import json
+          import sys
+          import os
+          from pathlib import Path
+          data = json.load(open(sys.argv[1], encoding='utf-8'))
+          deploy = data.get('deployment', data)
+          if data.get('status', 'ok') != 'ok' or deploy.get('readyState') != 'READY' or deploy.get('target') != 'production':
+              sys.exit('Vercel did not confirm a ready deployment.')
+          if deploy.get('productionUrl') != 'https://aithos-vulkan-tensor-parallel.vercel.app':
+              sys.exit('Unexpected production URL; inspect the existing project before retrying.')
+          url = deploy.get('url', '')
+          if not url.startswith('https://aithos-vulkan-tensor-parallel-') or not url.endswith('.vercel.app'):
+              sys.exit('Unexpected immutable deployment URL.')
+          Path(os.environ['RUNNER_TEMP'], 'benchmark-deployment-url').write_text(url, encoding='utf-8')
+          print('Existing benchmark production deployment is ready.')
+          PYCODE
+
+      - name: Verify the live publication against this commit
+        run: |
+          python3 -I -B scripts/verify_site.py "$(cat "$RUNNER_TEMP/benchmark-deployment-url")"
+          python3 -I -B scripts/verify_site.py
