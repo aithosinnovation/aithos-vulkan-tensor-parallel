@@ -4,7 +4,7 @@
 
 Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf8244**, DeepSeek-R1-Distill-Qwen-7B Q4_K_M. This public research report is prepared by Aithos Innovation and documents one exploratory benchmark; it is not a production recommendation. The implementation belongs to the llama.cpp / PR contributors; our contribution is the external test protocol, recorded cross-vendor measurements, reproducibility tooling, and analysis.
 
-[Open the offline explorer](docs/index.html) · [Method and commands](METHOD.md) · [Recompute offline](VERIFY.md) · [Every sample](data/samples.csv) · [Source references](references.md)
+[Live interactive explorer](https://aithos-vulkan-tensor-parallel.vercel.app) · [Open offline](docs/index.html) · [Method and commands](METHOD.md) · [Recompute offline](VERIFY.md) · [Every sample](data/samples.csv) · [Source references](references.md)
 
 ![All measured depth-zero pp512 samples at ub512 and tg64 samples at ub32; RTX leads, tensor has large between-block variation.](assets/comparison.png)
 
