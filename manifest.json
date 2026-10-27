@@ -2,10 +2,10 @@
   "schema": "aithos-public-release-files/1",
   "files_sha256": {
     ".gitattributes": "eccbebbd50c7e8efa0b1e3288abfe469b477984d63e7ef238a6a59d7ee61b0fe",
-    ".github/workflows/vercel-production.yml": "854c66646f44948f8d172db28bb48dfc5e678b31c8816e9c16251685482fe797",
+    ".github/workflows/vercel-production.yml": "0a6a3bbf2e8894fecf5773d84427c902ba72f86135fe926972f1a639bb559f98",
     ".gitignore": "7e16cc5ace739c474d7293a443ad0a27cb16b590fb84f215ee440e01209c588b",
     "BEGINNER-SUMMARY.md": "11288f3faf4e4468585f66d1d3e3bc6b2ed6d06de27923f6e51a8842167798c0",
-    "DEPLOYMENT.md": "a770ebffc4bfbbf78b6edbebab3fa7bf71144d2d9ff099b680a9eb73531fe471",
+    "DEPLOYMENT.md": "604d6866cde40227a8def9fbdc3d81ab88f297519467865b2c9ae4e749989771",
     "LICENSE": "d5a0b1b770f93640782ca83d0d6c0181b7bc42ac05ef3c231194aceaf0ec0c23",
     "LICENSE-NOTICES.md": "7a909702d692bd775bccd2712fd989c979b80b1181febf3d27a62d75f5aecac9",
     "METHOD.md": "67d65f15543f53e953413b6b9da7fdb1e0724d504c95b4db00682516e4d510f6",

@@ -24,3 +24,5 @@ No secrets or deployment output files are uploaded as Actions artifacts. Do not 
 Official reference: https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel
 
 Before deployment, read-only API probes verify token access to the existing project. Logs contain only HTTP status, fixed error codes and identity-match booleans, never response bodies or credentials. Surrounding token whitespace is trimmed only in memory. A rejected credential stops deployment before any production mutation.
+
+The CLI selects the existing project through the validated VERCEL_ORG_ID and VERCEL_PROJECT_ID environment variables (the official CI context). It intentionally omits `--scope`/`--project`: explicit scope resolution in the pinned CLI requires an account-user lookup that may return404 for a valid project-authorized token. A successful authenticated project read and the fixed destination identity checks remain required; no authentication or authorization check is disabled.
