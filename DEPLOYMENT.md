@@ -22,3 +22,5 @@ To validate initial automation after configuring secrets, push one reviewed docu
 No secrets or deployment output files are uploaded as Actions artifacts. Do not enable shell tracing or print environment variables. Workflow edits are production-sensitive and should receive an independent review.
 
 Official reference: https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel
+
+Before deployment, read-only API probes verify token access to the existing project. Logs contain only HTTP status, fixed error codes and identity-match booleans, never response bodies or credentials. Surrounding token whitespace is trimmed only in memory. A rejected credential stops deployment before any production mutation.

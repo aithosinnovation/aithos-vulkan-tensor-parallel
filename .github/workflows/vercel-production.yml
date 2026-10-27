@@ -51,6 +51,52 @@ jobs:
                   sys.exit(f'{name} does not identify the approved benchmark project.')
           PYCODE
 
+      - name: Verify dedicated token access safely
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          python3 - <<'PYCODE'
+          import json
+          import os
+          import re
+          import sys
+          from urllib.error import HTTPError
+          from urllib.request import Request, urlopen
+
+          original = os.environ['VERCEL_TOKEN']
+          token = original.strip()
+          print('Token surrounding whitespace present:', token != original)
+          team = os.environ['VERCEL_ORG_ID']
+          project = os.environ['VERCEL_PROJECT_ID']
+          def probe(label, path):
+              request = Request('https://api.vercel.com' + path,
+                                headers={'Authorization': 'Bearer ' + token})
+              try:
+                  with urlopen(request, timeout=30) as response:
+                      status, data = response.status, json.load(response)
+              except HTTPError as error:
+                  status = error.code
+                  try:
+                      data = json.load(error)
+                  except (ValueError, OSError):
+                      data = {}
+              code = data.get('error', {}).get('code', '')
+              safe_code = code if isinstance(code, str) and re.fullmatch(r'[A-Za-z0-9_-]{0,64}', code) else 'unknown'
+              print(f'{label}: HTTP {status}; error_code={safe_code or "none"}')
+              return status, data
+          user_status, _ = probe('Vercel user access', '/v2/user')
+          scoped_status, _ = probe('Team-scoped user access', '/v2/user?teamId=' + team)
+          project_status, data = probe('Existing project access', '/v9/projects/' + project + '?teamId=' + team)
+          project_matches = data.get('id') == project and data.get('accountId') == team
+          print('Existing benchmark project identity matches:', project_matches)
+          if project_status != 200 or not project_matches:
+              sys.exit('Dedicated token cannot access the approved benchmark project; deployment stopped.')
+          if user_status != 200 and scoped_status != 200:
+              sys.exit('Token reaches the project but user lookup fails; inspect CLI compatibility before deployment.')
+          PYCODE
+
       - name: Use the validated Node.js version
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
@@ -78,7 +124,18 @@ jobs:
           if tip != os.environ['GITHUB_SHA']:
               sys.exit('This run is stale; only current main may be deployed.')
           PYCODE
-          vercel deploy --prod --yes --non-interactive --json --scope "$VERCEL_ORG_ID" --project "$VERCEL_PROJECT_ID" > "$RUNNER_TEMP/benchmark-deployment.json"
+          python3 - <<'PYCODE'
+          import os
+          import subprocess
+          from pathlib import Path
+          env = os.environ.copy()
+          env['VERCEL_TOKEN'] = env['VERCEL_TOKEN'].strip()
+          with Path(env['RUNNER_TEMP'], 'benchmark-deployment.json').open('w', encoding='utf-8') as output:
+              subprocess.run([
+                  'vercel', 'deploy', '--prod', '--yes', '--non-interactive', '--json',
+                  '--scope', env['VERCEL_ORG_ID'], '--project', env['VERCEL_PROJECT_ID'],
+              ], env=env, stdout=output, check=True)
+          PYCODE
           python3 - "$RUNNER_TEMP/benchmark-deployment.json" <<'PYCODE'
           import json
           import sys
