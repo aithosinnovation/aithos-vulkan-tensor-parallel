@@ -2,6 +2,12 @@
 
 This repository publishes the Aithos mixed-vendor Vulkan benchmark report, the complete derived timing table, verification data, scripts, and a static interactive explorer. Raw execution logs and full logit captures remain private. The report identifies the tested llama.cpp commit and documents limitations alongside the results.
 
+## Visual publication update — 2026-11-06
+
+- Replaced the report and explorer overview with the founder-approved, single-workload generation comparison. Added square and wide PNG/SVG versions and a separate post-hoc prompt figure. Retained the historical comparison as supplementary media.
+- Clarified the report opening and prompt table labels. Added a publication-ready X Premium draft with the canonical repository URL; it has not been posted.
+- Kept the original 56 benchmark records and 280 elapsed-nanosecond timings, existing MIT license, third-party boundaries, and interactive explorer data unchanged.
+
 Original Aithos code and documentation are licensed under MIT; see `LICENSE`. The Vercel configuration routes the site root to `docs/index.html`. No backend, telemetry, model weights, or inference binaries are included.
 
 ## Accuracy review corrections — 2026-10-25

@@ -21,12 +21,4 @@ frames=[]
 for name in ('comparison','numerical','memory'):
  im=Image.open(A/(name+'.png')).convert('RGB');im.thumbnail((1280,720));frames.append(im)
 frames[0].save(A/'measured-figure-deck.gif',save_all=True,append_images=frames[1:],duration=[5000]*3,loop=0,optimize=True)
-(A/'MEDIA.md').write_text('''# Local publication media
-
-comparison.png/SVG: pp512 atub512 andtg64 atub32, every sample with processmedian/range,1920×1080PNG. PrimaryX/GitHuboverview.
-
-numerical.png/SVG: all32centeredNMSErows, explicitlylog-scaled,1600×900. memory.png/SVG: WDDMdevice-wideobservedpeaks,1600×900. topology.png/SVG: conceptualconnectiondiagram,1920×1080, noactualbandwidthclaim. Workload-specificPNGs/SVGs showeverymeasuredsample andscope.
-
-measured-figure-deck.gif: threeactualstoredmeasurementfigures,1280×720,5secondsperframe. It is an animatedfiguredeck, NOTa screenrecording or real-timeinferencedemonstration. No simulated/interpolatedtimings. All sourcefigures and Pythonrenderers retained. No publication has occurred.
-''')
 print('Created topology PNG/SVG and actual-figure GIF')

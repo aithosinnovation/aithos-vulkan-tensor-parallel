@@ -15,3 +15,5 @@ Text files use LF line endings, enforced by `.gitattributes`, so the manifest de
 Original benchmark logs and full logit captures remain private. Their producer-level and numerical validations were completed before publication packaging. `data/correctness.json` contains summarized token and numerical-error findings; full logits and execution captures are not distributed. The numerical archive validator is retained in `scripts/verify_numerical.py` for private reproduction, but its input archive is not distributed.
 
 The tested llama.cpp source is pinned by exact upstream commit in `README.md`; this repository does not bundle a second copy of upstream source. No model weights or inference binaries are included.
+
+The approved primary and post-hoc figures are supplied as PNG and editable SVG. `scripts/make_publication_graphics.py` regenerates them from the published nanosecond samples in `data/summary.json` using matplotlib. The numerical verifier above requires only standard-library Python; chart rendering additionally requires matplotlib.

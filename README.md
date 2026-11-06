@@ -1,12 +1,14 @@
-# Two vendors. One model. Does it help?
+# More GPUs didn't win this test.
 
-**Yes, an Intel Arc Pro B70 and NVIDIA RTX 3090 executed one model together. For the small 7B model and frozen build we measured, the equal-weight mixed configurations did not beat the RTX 3090 alone.** Layer splitting was consistently faster than tensor splitting. Widening the batch changed absolute prompt speeds substantially, but not the four-mode ordering. Prompt ratios versus the RTX are batch-sensitive, so the two prompt tables below are not one ratio.
+**The RTX 3090 alone led this 7B Vulkan inference benchmark on one Windows host.** An Intel Arc Pro B70 and RTX 3090 ran the model together, but neither equal 1/1 split beat the RTX alone in the tested workloads. Layer splitting beat the B70 alone and was consistently faster than tensor splitting. The optional CPU ISA extensions were off in this build; unequal splits and an optimized CPU build were not tested. Prompt ratios versus the RTX depend on batch settings.
 
 Native Windows Vulkan, pinned llama.cpp **c93decc7654dac127d18fd61064565ef00bf8244**, DeepSeek-R1-Distill-Qwen-7B Q4_K_M. This public research report is prepared by Aithos Innovation and documents one exploratory benchmark; it is not a production recommendation. The implementation belongs to the llama.cpp / PR contributors; our contribution is the external test protocol, recorded cross-vendor measurements, reproducibility tooling, and analysis.
 
 [Live interactive explorer](https://aithos-vulkan-tensor-parallel.vercel.app) · [Open offline](docs/index.html) · [Method and commands](METHOD.md) · [Recompute offline](VERIFY.md) · [Every sample](data/samples.csv) · [Source references](references.md)
 
-![All measured depth-zero pp512 samples at ub512 and tg64 samples at ub32; RTX leads, tensor has large between-block variation.](assets/comparison.png)
+![Primary 64-token generation at depth zero and requested batch 32 on one Windows host. RTX 3090 alone: 136.5–137.6 tokens per second; layer split: 104.0–105.9; B70 alone: 97.1–97.2; tensor split: 27.9–39.1. Ranges are two process medians per mode.](assets/generation-primary-wide.png)
+
+[Square X graphic](assets/generation-primary-square.png) · [Editable wide SVG](assets/generation-primary-wide.svg) · [Figure descriptions](assets/MEDIA.md). Bars start at zero; the printed ranges show the two process medians.
 
 ## What we measured
 
@@ -29,9 +31,11 @@ Tensor throughput was **71.4–79.7% lower than RTX alone**, comparing medians w
 
 ## Prompt processing, 512 tokens, depth 0
 
-The wide-batch table is the primary prompt comparison. The ubatch 32 table is the primary-matrix result, shown second. The four-mode ranking is the same in both. The ratios versus the RTX are not: layer rises from about 539 to 4243–4278 tok/s, tensor rises from 332–362 to 1107–1111 tok/s, and RTX rises from 1274–1301 to 5212–5321 tok/s. Quote a prompt ratio only with its batch.
+The wide-batch table is a separate post-hoc sensitivity run, shown first because it gives higher prompt rates for this setup. The ubatch 32 table is the original primary-matrix result. The four-mode ranking is the same in both. The ratios versus the RTX are not: layer rises from about 539 to 4243–4278 tok/s, tensor rises from 332–362 to 1107–1111 tok/s, and RTX rises from 1274–1301 to 5212–5321 tok/s. Quote a prompt ratio only with its batch.
 
-### Primary prompt table: batch and ubatch 512
+![Separate post-hoc 512-token prompt comparison at requested batch and micro-batch 512. RTX alone led the process-median ranges on this host.](assets/prompt-posthoc-wide.png)
+
+### Post-hoc prompt table: batch and ubatch 512
 
 Separate sensitivity. Not pooled with the primary matrix.
 
@@ -42,7 +46,7 @@ Separate sensitivity. Not pooled with the primary matrix.
 | Layer split | 4243.2–4277.9 | 4188.5–4396.2 |
 | Tensor split | 1106.6–1111.3 | 1080.6–1141.6 |
 
-### Secondary prompt table: primary matrix, ubatch 32
+### Primary-matrix prompt table: ubatch 32
 
 | Configuration | Process medians, tok/s | All sample min–max, tok/s |
 |---|---:|---:|
