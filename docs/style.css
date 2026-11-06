@@ -3,3 +3,4 @@
 #numbers{overflow-x:auto}.controls>label{min-width:0;max-width:100%}@media(max-width:760px){.stats{grid-template-columns:1fr;gap:20px}.stats>div{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}.stats strong{font-size:18px}.stats span{margin:0;max-width:none}#numbers table{min-width:500px}.topology-links{flex-direction:column;gap:18px}.chart-heading{flex-direction:column;gap:4px}.chart-heading span{text-align:left}}
 
 @media(max-width:760px){#numbers::after{content:"Swipe the table to see all columns.";display:block;font-size:11px;color:var(--muted);padding-top:10px}}
+.primary-figure{margin:0 0 42px}.primary-figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.primary-figure figcaption{font-size:13px;color:var(--muted);margin-top:12px}.primary-figure figcaption a{color:var(--cyan);text-decoration:underline}

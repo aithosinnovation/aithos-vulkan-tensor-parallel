@@ -18,7 +18,9 @@ FILES = {
     "/data.js": "docs/data.js",
     "/data.json": "docs/data.json",
     "/data/samples.csv": "data/samples.csv",
-    "/assets/comparison.png": "assets/comparison.png",
+    "/assets/generation-primary-square.png": "assets/generation-primary-square.png",
+    "/assets/generation-primary-wide.png": "assets/generation-primary-wide.png",
+    "/assets/prompt-posthoc-wide.png": "assets/prompt-posthoc-wide.png",
 }
 
 
@@ -63,7 +65,7 @@ def verify(site=SITE):
         _, final_url = fetch(url)
         if final_url != url:
             raise ValueError("Canonical report URL unexpectedly redirects.")
-    print("PASS: 8 live resources match this commit; 4 canonical report links work.")
+    print(f"PASS: {len(FILES)} live resources match this commit; 4 canonical report links work.")
 
 
 if __name__ == "__main__":
